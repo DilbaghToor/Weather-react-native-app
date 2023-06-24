@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 import {  haze, rainy, snow, sunny } from '../assCont/backgroundImages/index';
 
 
-export default function Weather( {weatherData}) {
+export default function Weather( {weatherData, fetchWeatherData}) {
 
     const [backgroundImage, setBackgroundImage] = useState(null);
 
@@ -23,7 +23,7 @@ export default function Weather( {weatherData}) {
         if(weather === 'Snow') return snow
         if(weather === 'Clear') return sunny
         if(weather === 'Rain') return rainy
-        if(weather === 'Haze') return sunny
+        if(weather === 'Haze') return haze
         return haze;
     }
 
@@ -32,12 +32,13 @@ export default function Weather( {weatherData}) {
   return (
     <View style={styles.container}>
 
+
         <ImageBackground
              source={backgroundImage}
              style={styles.backgroundImage}
              resizeMode='cover'
         >
-            <SearchBar />
+            <SearchBar  fetchWeatherData={ fetchWeatherData } />
 
             <View style={{alignItems: 'center'}}>
                 <Text style={{ ...styles.headerText, color: textColor, fontWeight: 'bold', fontSize: 46 }}>{ name }</Text>
